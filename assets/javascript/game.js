@@ -4,14 +4,22 @@ var guessCountElement = document.getElementById("guess-count");
 var lettersGuessedElement = document.getElementById("failed-guesses");
 
 var wordsArray = [
-	"first",
-	"second",
-	"third"
+	"Sneakin",
+	"Hotline Bling",
+	"Tuesday",
+	"HYFR",
+	"The Motto",
+	"Still Here",
+	"All Me",
+	"Forever",
+	"Started from the Bottom",
+	"From Time",
+	"The Language"
 ];
 
 var randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase();
 var allLettersGuessed = [];
-const maxAttempts = 15;
+const maxAttempts = 12;
 var guessCount = 0;
 var guessesRemaining = maxAttempts - guessCount;
 var wordComplete = false;
@@ -20,7 +28,7 @@ var winCount = 0;
 function renderWord() {
 	var html = "";
 	for(var i = 0; i < randomWord.length; i++) {
-		if(allLettersGuessed.indexOf(randomWord[i]) !== -1) {
+		if(allLettersGuessed.indexOf(randomWord[i]) !== -1 || randomWord[i] === " ") {
 			html += randomWord[i].toUpperCase();
 		} else {
 			html += "_";

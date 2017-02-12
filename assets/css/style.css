@@ -1,3 +1,22 @@
 body {
-	font-size: 60px;
+	font-size: 3em;
+	font-family: 'Roboto', sans-serif;
+
+}
+
+.letters {
+	letter-spacing: .5em;
+}
+
+#main-panel {
+	text-align: center;
+	font-weight: bold;
+}
+
+#main-panel > p, #main-panel > div {
+	margin: 0.75em 0 0.75em 0;
+}
+
+#current-word, #failed-guesses {
+	font-size: 1.3em;
 }
