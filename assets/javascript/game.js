@@ -9,12 +9,13 @@ var wordsArray = [
 	"third"
 ];
 
-var randomIndexOfArray = Math.floor(Math.random() * wordsArray.length);
-var randomWord = wordsArray[randomIndexOfArray].toLowerCase();
+var randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase();
 var allLettersGuessed = [];
 const maxAttempts = 15;
 var guessCount = 0;
 var guessesRemaining = maxAttempts - guessCount;
+var wordComplete = false;
+var winCount = 0;
 
 function renderWord() {
 	var html = "";
@@ -28,7 +29,16 @@ function renderWord() {
 	currentWordElement.innerHTML = html;
 }
 
+function clearWordAndGuesses() {
+	guessCountElement.innerHTML = maxAttempts;
+	guessCount = 0;
+	guessesRemaining = maxAttempts - guessCount;
+	allLettersGuessed = [];
+	lettersGuessedElement.innerHTML = "";
+}
+
 renderWord();
+winCountElement.innerHTML = winCount;
 
 document.onkeydown = function(e) {
 	var theKey = e.key.toLowerCase();
@@ -36,20 +46,20 @@ document.onkeydown = function(e) {
 
 	if(theKeyCode >= 65 && theKeyCode <= 90 && allLettersGuessed.indexOf(theKey) === -1){
 		allLettersGuessed.push(theKey);
+
 		if(randomWord.indexOf(theKey) === -1) {
 			guessCount++;
 		}
+
 		guessesRemaining = maxAttempts - guessCount;
+
 		if(guessesRemaining === 0) {
-			guessCountElement.innerHTML = maxAttempts;
-			guessCount = 0;
-			guessesRemaining = maxAttempts - guessCount;
-			allLettersGuessed = [];
-			lettersGuessedElement.innerHTML = "";
-			randomWord = wordsArray[randomIndexOfArray];
+			clearWordAndGuesses();
+			randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase();
 		} else {
 			guessCountElement.innerHTML = guessesRemaining;
 		}
+
 		var html = "";
 		for(var i = 0; i < allLettersGuessed.length; i++) {
 			if(randomWord.indexOf(allLettersGuessed[i]) === -1) {
@@ -57,6 +67,21 @@ document.onkeydown = function(e) {
 			}
 		}
 		lettersGuessedElement.innerHTML = html;
+
 		renderWord();
-	} 
+
+		var renderedWord = document.getElementById("current-word").innerHTML;
+		if(renderedWord.indexOf("_") === -1) {
+			wordComplete = true;
+		}
+	}
+
+	if(wordComplete) {
+		wordComplete = false;
+		winCount++;
+		winCountElement.innerHTML = winCount;
+		clearWordAndGuesses();
+		randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase();
+		renderWord();
+	}
 }
