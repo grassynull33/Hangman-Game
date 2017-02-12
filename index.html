@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>[INSERT TITLE]</title>
+	<title>Hangman</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- CSS files: (1) Reset and (2) Style -->
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-	
+	<p>Press any key to get started!</p>
+	<!-- SPAN needs to be dynamically created to show # of wins -->
+	<p>Wins: <span id="win-count">0</span></p>
+	<div id="current-word">
+		<!-- current needs to be dynamically created to show letters or underscores to indicate progress -->
+	</div>
+	<p>Number of Guesses Remaining: <span id="guess-count"></span></p>
+	<p>Letters Already Guessed</p>
+	<div id="failed-guesses"></div>
+	<!-- After WIN or LOSS, game should automatically go onto the next word -->
 	<!-- 	JavaScript file linked below -->
 	<script src="assets/javascript/game.js" type="text/javascript"></script>
 </body>
