@@ -2,19 +2,26 @@ var winCountElement = document.getElementById("win-count");
 var currentWordElement = document.getElementById("current-word");
 var guessCountElement = document.getElementById("guess-count");
 var lettersGuessedElement = document.getElementById("failed-guesses");
+var wrongLetterAudioElement = document.getElementById("wrong-letter");
+var correctLetterAudioElement = document.getElementById("correct-letter");
 
 var wordsArray = [
-	"Sneakin",
 	"Hotline Bling",
-	"Tuesday",
-	"HYFR",
-	"The Motto",
+	"One Dance",
+	"Fake Love",
 	"Still Here",
-	"All Me",
-	"Forever",
+	"Jumpman",
+	"Worst Behavior",
 	"Started from the Bottom",
-	"From Time",
-	"The Language"
+	"HYFR",
+	"Take Care",
+	"Forever",
+	"The Motto",
+	"Best I Ever Had",
+	"All Me",
+	"Pound Cake",
+	"The Language",
+	"From Time"
 ];
 
 var randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase();
@@ -24,6 +31,7 @@ var guessCount = 0;
 var guessesRemaining = maxAttempts - guessCount;
 var wordComplete = false;
 var winCount = 0;
+var prompt = "Press any key to get started!";
 
 function renderWord() {
 	var html = "";
@@ -45,10 +53,23 @@ function clearWordAndGuesses() {
 	lettersGuessedElement.innerHTML = "";
 }
 
+$(document).ready(function() {
+	$('#prompt').typeIt({
+	     strings: prompt,
+	     speed: 30,
+	     autoStart: false
+	});
+
+	$("#bio").hide();
+	$("#bio").fadeIn(1500);
+});
+
+
 renderWord();
 winCountElement.innerHTML = winCount;
+guessCountElement.innerHTML = guessesRemaining;
 
-document.onkeydown = function(e) {
+document.onkeyup = function(e) {
 	var theKey = e.key.toLowerCase();
 	var theKeyCode = e.keyCode;
 
@@ -57,6 +78,7 @@ document.onkeydown = function(e) {
 
 		if(randomWord.indexOf(theKey) === -1) {
 			guessCount++;
+			wrongLetterAudioElement.play();
 		}
 
 		guessesRemaining = maxAttempts - guessCount;
