@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hangman - 50 States Edition</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- CSS files: (1) Reset and (2) Style -->
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- External font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Rubik" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script> 
+	<script src="https://cdn.jsdelivr.net/jquery.typeit/4.3.0/typeit.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<section id="header">
+			<h1>Hangman</h1>
+			<small>50 States Edition</small>
+			<img id="frame" src="assets/images/usa.png" alt="USA">
+			<p id="bio">God Bless the United States of America!</p>
+		</section>
+		<section id="main-panel">
+			<p id="prompt"></p>
+			<!-- SPAN needs to be dynamically created to show # of wins -->
+			<p>Wins: <span id="win-count"></span></p>
+			<!-- current word needs to be dynamically created to show letters or underscores to indicate progress -->
+			<div id="current-word" class="letters"></div>
+			<p>Number of Guesses Remaining: <span id="guess-count"></span></p>
+			<p>Letters Already Guessed</p>
+			<div id="failed-guesses" class="letters"></div>
+			<!-- After WIN or LOSS, game should automatically go onto the next word -->
+		</section>
+	</div>
+	<audio id="wrong-letter" preload="true">
+	    <source src="assets/audio/fail-trombone-01.mp3" type="audio/mp3">
+	</audio>
+	<audio id="correct-word" preload="true">
+	    <source src="assets/audio/TheStarSpangledBanner_BandOnly.mp3" type="audio/mp3">
+	</audio>
+	<!-- 	JavaScript file linked below -->
+	<script src="assets/javascript/game.js" type="text/javascript"></script>
+</body>
+</html>
