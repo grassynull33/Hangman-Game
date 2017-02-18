@@ -1,0 +1,60 @@
+body {
+	font-size: 3em;
+	font-family: 'Rubik', sans-serif;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	min-height: 100vh;
+}
+
+#header {
+	flex-grow: 1;
+	text-align: center;
+	padding: 30px;
+}
+
+#frame {
+	display: block;
+	height: auto;
+	max-width: 80%;
+	margin: auto;
+	margin-top: 25px;
+}
+
+#bio {
+	font-size: .5em;
+	margin-top: 25px;
+}
+
+small {
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #888;
+	letter-spacing: 3px;
+	padding: 10px;
+}
+
+.letters {
+	letter-spacing: .5em;
+}
+
+#main-panel {
+	flex: 0 0 800px;
+	background-color: #002868;
+	color: #fff;
+	padding: 60px;
+	font-size: .8em;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+}
+
+#main-panel > p, #main-panel > div {
+	margin: 0 0 1em 0;
+}
+
+#current-word, #failed-guesses {
+	font-size: 1.5em;
+	font-family: 'Roboto Condensed', sans-serif;
+	line-height: 1.3;
+}
