@@ -3,30 +3,15 @@ var currentWordElement = document.getElementById("current-word");
 var guessCountElement = document.getElementById("guess-count");
 var lettersGuessedElement = document.getElementById("failed-guesses");
 var wrongLetterAudioElement = document.getElementById("wrong-letter");
-var correctLetterAudioElement = document.getElementById("correct-letter");
+var correctWordAudioElement = document.getElementById("correct-word");
 
 var wordsArray = [
-	"Hotline Bling",
-	"One Dance",
-	"Fake Love",
-	"Still Here",
-	"Jumpman",
-	"Worst Behavior",
-	"Started from the Bottom",
-	"HYFR",
-	"Take Care",
-	"Forever",
-	"The Motto",
-	"Best I Ever Had",
-	"All Me",
-	"Pound Cake",
-	"The Language",
-	"From Time"
+	"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "Puerto Rico"
 ];
 
 var randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase();
 var allLettersGuessed = [];
-const maxAttempts = 12;
+const maxAttempts = 5;
 var guessCount = 0;
 var guessesRemaining = maxAttempts - guessCount;
 var wordComplete = false;
@@ -69,7 +54,7 @@ renderWord();
 winCountElement.innerHTML = winCount;
 guessCountElement.innerHTML = guessesRemaining;
 
-document.onkeyup = function(e) {
+document.onkeydown = function(e) {
 	var theKey = e.key.toLowerCase();
 	var theKeyCode = e.keyCode;
 
@@ -78,6 +63,9 @@ document.onkeyup = function(e) {
 
 		if(randomWord.indexOf(theKey) === -1) {
 			guessCount++;
+			correctWordAudioElement.currentTime = 0;
+			correctWordAudioElement.pause();
+			wrongLetterAudioElement.currentTime = 0;
 			wrongLetterAudioElement.play();
 		}
 
@@ -107,6 +95,8 @@ document.onkeyup = function(e) {
 	}
 
 	if(wordComplete) {
+		correctWordAudioElement.currentTime = 0;
+		correctWordAudioElement.play();
 		wordComplete = false;
 		winCount++;
 		winCountElement.innerHTML = winCount;
